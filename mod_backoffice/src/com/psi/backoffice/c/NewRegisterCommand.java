@@ -34,8 +34,6 @@ public class NewRegisterCommand
         String accountnumber = this.params.get("AccountNumber").toString();
         String guiinterface = this.params.get("GuiInterface").toString();
         
-        Logger.LogServer("guiinterface: " + guiinterface);
-        
         NewRegister reg = new NewRegister();
         
         reg.setEmail(email);
