@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.tlc.common"/>
+	<classpathentry kind="lib" path="lib/json-simple-1.1.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/com.tlc.gui.modules"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/sherm/Documents/WORK FILES/JAVA LIBS/com.tlc.absmobile.blueprint.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sherm/Documents/WORK FILES/JAVA LIBS/tlc-smtp.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sherm/Documents/WORK FILES/JAVA LIBS/httpclient-4.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sherm/Documents/WORK FILES/JAVA LIBS/httpclient-cache-4.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sherm/Documents/WORK FILES/JAVA LIBS/httpcore-4.2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sherm/Documents/WORK FILES/JAVA LIBS/httpmime-4.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sherm/Documents/WORK FILES/JAVA LIBS/com.psi.ibc.common.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sherm/Documents/WORK FILES/JAVA LIBS/mailapi-1.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sherm/Documents/WORK FILES/JAVA LIBS/pgplib-3.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sherm/Documents/WORK FILES/JAVA LIBS/pgplib-mail-3.1.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

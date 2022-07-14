@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mail"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/oracledatabase"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/sqllite"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/bouncycastle"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/sftp-vfs"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jsoapserver"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/apache"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/json"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/dom4j"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/XPath"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ExportToExcel"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/xml-rpc-client"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/reugie-add"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/apache-httpclient-4.2.5"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
