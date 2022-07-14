@@ -175,3 +175,4 @@ nb-configuration.xml
 ############# IGNORE SVN FILES###################
 *.log
 .svn
+RemoteSystemsTempFiles/.project
