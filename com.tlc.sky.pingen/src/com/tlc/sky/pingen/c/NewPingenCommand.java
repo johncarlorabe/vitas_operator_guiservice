@@ -47,6 +47,15 @@ public class NewPingenCommand extends UICommand{
 			if(group.duplicateWithOtherInterface(guiinterface)){
 				ObjectState state = new ObjectState("10","User level is already registered.");
 				pingenGroup.setState(state);
+				AuditTrail audit  = new AuditTrail();
+	    		audit.setIp(pingenGroup.getAuthorizedSession().getIpAddress());
+	    		audit.setModuleid(String.valueOf(this.getId()));
+	    		audit.setEntityid(name);
+	    		audit.setLog(pingenGroup.getState().getMessage());
+	    		audit.setStatus(pingenGroup.getState().getCode());
+	    		audit.setUserid(pingenGroup.getAuthorizedSession().getAccount().getId());
+	    		audit.setUsername(pingenGroup.getAuthorizedSession().getAccount().getUserName());
+	    		audit.insert();
 				JsonView view = new JsonView(pingenGroup);
 				return view;
 			}
