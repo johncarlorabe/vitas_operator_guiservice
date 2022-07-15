@@ -71,7 +71,7 @@ public class VipWalletRequestCommand extends UICommand{
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(topup.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
-				    		audit.setEntityid(id);
+				    		audit.setEntityid(accountnumber);
 				    		audit.setLog(topup.getState().getMessage());
 				    		audit.setStatus(topup.getState().getCode());
 				    		audit.setUserid(topup.getAuthorizedSession().getAccount().getId());
@@ -101,7 +101,7 @@ public class VipWalletRequestCommand extends UICommand{
 								AuditTrail audit  = new AuditTrail();
 					    		audit.setIp(topup.getAuthorizedSession().getIpAddress());
 					    		audit.setModuleid(String.valueOf(this.getId()));
-					    		audit.setEntityid(id);
+					    		audit.setEntityid(accountnumber);
 					    		audit.setLog(topup.getState().getMessage());
 					    		audit.setStatus(topup.getState().getCode());
 					    		audit.setUserid(topup.getAuthorizedSession().getAccount().getId());
@@ -114,7 +114,7 @@ public class VipWalletRequestCommand extends UICommand{
 								AuditTrail audit  = new AuditTrail();
 					    		audit.setIp(topup.getAuthorizedSession().getIpAddress());
 					    		audit.setModuleid(String.valueOf(this.getId()));
-					    		audit.setEntityid(id);
+					    		audit.setEntityid(accountnumber);
 					    		audit.setLog(topup.getState().getMessage());
 					    		audit.setStatus(topup.getState().getCode());
 					    		audit.setUserid(topup.getAuthorizedSession().getAccount().getId());
@@ -154,7 +154,7 @@ public class VipWalletRequestCommand extends UICommand{
 	@Override
 	public int getId() {
 		// TODO Auto-generated method stub
-		return 2005;
+		return 9502;
 	}
 
 }

@@ -55,7 +55,7 @@ public class DeallocateCommand extends UICommand{
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(topup.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
-				    		audit.setEntityid(id);
+				    		audit.setEntityid(accountnumber);
 				    		audit.setLog(topup.getState().getMessage());
 				    		audit.setStatus(topup.getState().getCode());
 				    		audit.setUserid(topup.getAuthorizedSession().getAccount().getId());
@@ -71,7 +71,7 @@ public class DeallocateCommand extends UICommand{
 								AuditTrail audit  = new AuditTrail();
 					    		audit.setIp(topup.getAuthorizedSession().getIpAddress());
 					    		audit.setModuleid(String.valueOf(this.getId()));
-					    		audit.setEntityid(id);
+					    		audit.setEntityid(accountnumber);
 					    		audit.setLog(topup.getState().getMessage());
 					    		audit.setStatus(topup.getState().getCode());
 					    		audit.setUserid(topup.getAuthorizedSession().getAccount().getId());
@@ -84,7 +84,7 @@ public class DeallocateCommand extends UICommand{
 								AuditTrail audit  = new AuditTrail();
 					    		audit.setIp(topup.getAuthorizedSession().getIpAddress());
 					    		audit.setModuleid(String.valueOf(this.getId()));
-					    		audit.setEntityid(id);
+					    		audit.setEntityid(accountnumber);
 					    		audit.setLog(topup.getState().getMessage());
 					    		audit.setStatus(topup.getState().getCode());
 					    		audit.setUserid(topup.getAuthorizedSession().getAccount().getId());
@@ -122,7 +122,7 @@ public class DeallocateCommand extends UICommand{
 
 	@Override
 	public int getId() {
-		return 2206;
+		return 2207;
 	}
 
 }
