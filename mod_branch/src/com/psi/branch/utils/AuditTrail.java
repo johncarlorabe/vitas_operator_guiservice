@@ -13,6 +13,8 @@ public class AuditTrail {
 	private String entityid;
 	private Integer userid;
 	private String moduleid;
+	private String data;
+	private String image;
 	public String getUsername() {
 		return username;
 	}
@@ -68,7 +70,7 @@ public class AuditTrail {
 		try{
 		DbWrapper db = SystemInfo.getDb();
 		
-	int	res = db.QueryUpdate("INSERT INTO TBLAUDITTRAIL (USERNAME,USERID,LOG,IP,TIMESTAMP,MODULE,SESSIONID,STATUS,ENTITYID) VALUES(?,?,?,?,CURRENT_TIMESTAMP,?,?,?,?)",
+	int	res = db.QueryUpdate("INSERT INTO TBLAUDITTRAIL (USERNAME,USERID,LOG,IP,TIMESTAMP,MODULE,SESSIONID,STATUS,ENTITYID,DATA,IMAGE) VALUES(?,?,?,?,CURRENT_TIMESTAMP,?,?,?,?,?,?)",
 				
 										this.username,
 										this.userid,
@@ -77,7 +79,9 @@ public class AuditTrail {
 										this.moduleid,
 										this.sessionid,
 										this.status,
-										this.entityid);
+										this.entityid,
+										this.data,
+										this.image);
 	
 		return res>0;
 		}catch(NullPointerException e){
@@ -89,6 +93,18 @@ public class AuditTrail {
 		return false;
 		
 		
+	}
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

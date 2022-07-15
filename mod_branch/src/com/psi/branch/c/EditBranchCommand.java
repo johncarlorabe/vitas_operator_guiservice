@@ -79,7 +79,8 @@ public class EditBranchCommand extends UICommand{
 				    		audit.setStatus(reg.getState().getCode());
 				    		audit.setUserid(reg.getAuthorizedSession().getAccount().getId());
 				    		audit.setUsername(reg.getAuthorizedSession().getAccount().getUserName());
-				    		
+				    		audit.setData("branchname:"+branchname+"||address:"+address+"||city:"+city+"||province:"+province+"||country:"+country+"||zipcode:"+zipcode+"||contactnumber:"+contactnumber+"||image:"+image+"||xcoordinate:"+xcoordinate+"||ycoordinate:"+ycoordinate+"||accountnumber:"+accountnumber+"||monday:"+monday+"||tuesday:"+tuesday+"||wednesday:"+wednesday+"||thursday:"+thursday+"||friday:"+friday+"||saturday:"+saturday+"||sunday:"+sunday+"||rafilename:"+rafilename+"||tin:"+tin+"||natureofbusiness:"+natureofbusiness+"||grosssales:"+grosssales);
+				    		audit.setImage(image);
 				    		audit.insert();
 							return new JsonView(reg);
 						}
@@ -93,7 +94,8 @@ public class EditBranchCommand extends UICommand{
 				    		audit.setStatus(reg.getState().getCode());
 				    		audit.setUserid(reg.getAuthorizedSession().getAccount().getId());
 				    		audit.setUsername(reg.getAuthorizedSession().getAccount().getUserName());
-				    		
+				    		audit.setData("branchname:"+branchname+"||address:"+address+"||city:"+city+"||province:"+province+"||country:"+country+"||zipcode:"+zipcode+"||contactnumber:"+contactnumber+"||xcoordinate:"+xcoordinate+"||ycoordinate:"+ycoordinate+"||accountnumber:"+accountnumber+"||monday:"+monday+"||tuesday:"+tuesday+"||wednesday:"+wednesday+"||thursday:"+thursday+"||friday:"+friday+"||saturday:"+saturday+"||sunday:"+sunday+"||rafilename:"+rafilename+"||tin:"+tin+"||natureofbusiness:"+natureofbusiness+"||grosssales:"+grosssales);
+				    		audit.setImage(image);
 				    		audit.insert();
 							return new JsonView(reg);
 						}else{
@@ -106,7 +108,8 @@ public class EditBranchCommand extends UICommand{
 				    		audit.setStatus(reg.getState().getCode());
 				    		audit.setUserid(reg.getAuthorizedSession().getAccount().getId());
 				    		audit.setUsername(reg.getAuthorizedSession().getAccount().getUserName());
-				    		
+				    		audit.setData("branchname:"+branchname+"||address:"+address+"||city:"+city+"||province:"+province+"||country:"+country+"||zipcode:"+zipcode+"||contactnumber:"+contactnumber+"||image:"+image+"||xcoordinate:"+xcoordinate+"||ycoordinate:"+ycoordinate+"||accountnumber:"+accountnumber+"||monday:"+monday+"||tuesday:"+tuesday+"||wednesday:"+wednesday+"||thursday:"+thursday+"||friday:"+friday+"||saturday:"+saturday+"||sunday:"+sunday+"||rafilename:"+rafilename+"||tin:"+tin+"||natureofbusiness:"+natureofbusiness+"||grosssales:"+grosssales);
+				    		audit.setImage(image);
 				    		audit.insert();
 							return new JsonView(reg);
 						}

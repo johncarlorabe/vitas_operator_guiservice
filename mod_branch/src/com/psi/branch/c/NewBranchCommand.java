@@ -93,6 +93,7 @@ public class NewBranchCommand extends UICommand{
 						}
 						if(reg.register(accountnumber)){
 							AuditTrail audit  = new AuditTrail();
+							reg.setState(new ObjectState("00", "Account succesfully created"));
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
 				    		audit.setEntityid(branchname);
