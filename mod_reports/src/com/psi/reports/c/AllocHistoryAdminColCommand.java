@@ -45,7 +45,7 @@ public class AllocHistoryAdminColCommand extends UICommand{
 			    		audit.setIp(model.getAuthorizedSession().getIpAddress());
 			    		audit.setModuleid(String.valueOf(this.getId()));
 			    		audit.setEntityid(code);
-			    		audit.setLog("Successfully fetched data");
+			    		audit.setLog("Successfully fetched data"+" ~ Date: " +datefrom+"|Type: "+accounttype);
 			    		audit.setStatus("00");
 			    		audit.setUserid(model.getAuthorizedSession().getAccount().getId());
 			    		audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
@@ -58,7 +58,7 @@ public class AllocHistoryAdminColCommand extends UICommand{
 				    		audit.setIp(model.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
 				    		audit.setEntityid(code);
-				    		audit.setLog("No data found");
+				    		audit.setLog("No data found"+" ~ Date: " +datefrom+"|Type: "+accounttype);
 				    		audit.setStatus("01");
 				    		audit.setUserid(model.getAuthorizedSession().getAccount().getId());
 				    		audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
@@ -74,7 +74,7 @@ public class AllocHistoryAdminColCommand extends UICommand{
 					    		audit.setIp(model.getAuthorizedSession().getIpAddress());
 					    		audit.setModuleid(String.valueOf(this.getId()));
 					    		audit.setEntityid(code);
-					    		audit.setLog("Successfully fetched data");
+					    		audit.setLog("Successfully fetched data"+" ~ Date: " +datefrom+"|Type: "+accounttype);
 					    		audit.setStatus("00");
 					    		audit.setUserid(model.getAuthorizedSession().getAccount().getId());
 					    		audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
@@ -87,7 +87,7 @@ public class AllocHistoryAdminColCommand extends UICommand{
 						    		audit.setIp(model.getAuthorizedSession().getIpAddress());
 						    		audit.setModuleid(String.valueOf(this.getId()));
 						    		audit.setEntityid(code);
-						    		audit.setLog("No data found");
+						    		audit.setLog("No data found"+" ~ Date: " +datefrom+"|Type: "+accounttype);
 						    		audit.setStatus("01");
 						    		audit.setUserid(model.getAuthorizedSession().getAccount().getId());
 						    		audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
@@ -101,7 +101,7 @@ public class AllocHistoryAdminColCommand extends UICommand{
 					    		audit.setIp(model.getAuthorizedSession().getIpAddress());
 					    		audit.setModuleid(String.valueOf(this.getId()));
 					    		audit.setEntityid(code);
-					    		audit.setLog("Successfully fetched data");
+					    		audit.setLog("Successfully fetched data"+" ~ Date: " +datefrom+"|Type: "+accounttype);
 					    		audit.setStatus("00");
 					    		audit.setUserid(model.getAuthorizedSession().getAccount().getId());
 					    		audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
@@ -114,7 +114,7 @@ public class AllocHistoryAdminColCommand extends UICommand{
 						    		audit.setIp(model.getAuthorizedSession().getIpAddress());
 						    		audit.setModuleid(String.valueOf(this.getId()));
 						    		audit.setEntityid(code);
-						    		audit.setLog("No data found");
+						    		audit.setLog("No data found"+" ~ Date: " +datefrom+"|Type: "+accounttype);
 						    		audit.setStatus("01");
 						    		audit.setUserid(model.getAuthorizedSession().getAccount().getId());
 						    		audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
@@ -130,7 +130,7 @@ public class AllocHistoryAdminColCommand extends UICommand{
 				    		audit.setIp(model.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
 				    		audit.setEntityid(code);
-				    		audit.setLog("Successfully fetched data");
+				    		audit.setLog("Successfully fetched data"+" ~ Date: " +datefrom+"|Type: "+accounttype);
 				    		audit.setStatus("00");
 				    		audit.setUserid(model.getAuthorizedSession().getAccount().getId());
 				    		audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
@@ -143,7 +143,7 @@ public class AllocHistoryAdminColCommand extends UICommand{
 					    		audit.setIp(model.getAuthorizedSession().getIpAddress());
 					    		audit.setModuleid(String.valueOf(this.getId()));
 					    		audit.setEntityid(code);
-					    		audit.setLog("No data found");
+					    		audit.setLog("No data found"+" ~ Date: " +datefrom+"|Type: "+accounttype);
 					    		audit.setStatus("01");
 					    		audit.setUserid(model.getAuthorizedSession().getAccount().getId());
 					    		audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
@@ -180,7 +180,7 @@ public class AllocHistoryAdminColCommand extends UICommand{
 	@Override
 	public int getId() {
 		// TODO Auto-generated method stub
-		return 3010;
+		return 3016;
 	}
 
 }
