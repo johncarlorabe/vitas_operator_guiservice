@@ -81,8 +81,8 @@ public class CardCashout extends Model{
 	    headers.put("Content-Type", prop.getType());
 	    headers.put("token",prop.getToken());
 	    headers.put("X-Forwarded-For","127.0.0.1");
-	    byte[] apiResponse = client.httpPost(prop.getUrl()+cashierdetails.getString("ACCOUNTNUMBER")+"/transfers", null, headers, null, entity);
-	    Logger.LogServer("Card Cashout url:"+prop.getUrl()+cashierdetails.getString("ACCOUNTNUMBER")+"/transfers");
+	    byte[] apiResponse = client.httpPost(prop.getUrl()+cashierdetails.getString("ACCOUNTNUMBER")+"/cashout", null, headers, null, entity);
+	    Logger.LogServer("Card Cashout url:"+prop.getUrl()+cashierdetails.getString("ACCOUNTNUMBER")+"/cashout");
 	   	Logger.LogServer("Card Cashout response:"+new String(apiResponse, "UTF-8"));
 	    if(apiResponse.length>0){
 	    	JSONObject object = (JSONObject)new JSONParser().parse(new String(apiResponse, "UTF-8"));	    
