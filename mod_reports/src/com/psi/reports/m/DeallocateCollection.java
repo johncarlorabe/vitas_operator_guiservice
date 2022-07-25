@@ -86,7 +86,7 @@ public class DeallocateCollection extends ModelCollection{
 	
 	public boolean getPrepaidColCashierSpecific() {
 		Logger.LogServer("DEALLOC REPORT FOR ~ "+this.accounttype);
-		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLDEALLOCTRANSACTIONS WHERE TOACCOUNT = ? AND FRACCOUNT = ? AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.branch,this.cashier,this.datefrom,this.dateto);
+		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLDEALLOCTRANSACTIONS WHERE FRACCOUNT = ? AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.cashier,this.datefrom,this.dateto);
 	     
 	     if (!r.isEmpty())
 	     {
@@ -109,7 +109,7 @@ public class DeallocateCollection extends ModelCollection{
 	
 	public boolean getPrepaidColCashierAll() {
 		Logger.LogServer("DEALLOC REPORT FOR ~ "+this.accounttype);
-		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLDEALLOCTRANSACTIONS WHERE TOACCOUNT = ? AND FRACCOUNT IN (SELECT ACCOUNTNUMBER FROM TBLUSERS WHERE STOREACCOUNTNUMBER = ?) AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.branch,this.branch,this.datefrom,this.dateto);
+		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLDEALLOCTRANSACTIONS WHERE FRACCOUNT IN (SELECT ACCOUNTNUMBER FROM TBLUSERS WHERE STOREACCOUNTNUMBER = ?) AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.branch,this.datefrom,this.dateto);
 	     
 	     if (!r.isEmpty())
 	     {

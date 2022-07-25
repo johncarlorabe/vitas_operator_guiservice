@@ -43,7 +43,7 @@ public class AdminAllocationHistoryCollection extends ModelCollection{
 	public boolean getPrepaidColCashierSpecific() {
 		Logger.LogServer("ALLOCATION REPORT FOR ~" +this.accounttype);
 		
-		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLOCTRANSACTIONS WHERE FRACCOUNT = ? AND TOACCOUNT = ? AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.branch,this.cashier,this.datefrom,this.dateto);
+		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLOCTRANSACTIONS WHERE TOACCOUNT = ? AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.cashier,this.datefrom,this.dateto);
 	     
 	     if (!r.isEmpty())
 	     {
@@ -67,7 +67,7 @@ public class AdminAllocationHistoryCollection extends ModelCollection{
 	public boolean getPrepaidColCashierAll() {
 		Logger.LogServer("ALLOCATION REPORT FOR ~" +this.accounttype);
 		
-		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLOCTRANSACTIONS WHERE FRACCOUNT = ? AND TOACCOUNT IN (SELECT ACCOUNTNUMBER FROM TBLUSERS WHERE STOREACCOUNTNUMBER = ?) AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.branch,this.branch,this.datefrom,this.dateto);
+		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLOCTRANSACTIONS WHERE TOACCOUNT IN (SELECT ACCOUNTNUMBER FROM TBLUSERS WHERE STOREACCOUNTNUMBER = ?) AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.branch,this.datefrom,this.dateto);
 	     
 	     if (!r.isEmpty())
 	     {
