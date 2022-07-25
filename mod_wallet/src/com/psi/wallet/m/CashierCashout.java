@@ -59,11 +59,11 @@ public class CashierCashout extends Model{
 	    DataRow cashier = SystemInfo.getDb().QueryDataRow("SELECT DECRYPT(AI.PASSWORD,?,AI.ACCOUNTNUMBER) PASSWORD,U.USERNAME,AI.ROOT,U.ACCOUNTNUMBER FROM ADMDBMC.TBLACCOUNTINFO AI INNER JOIN TBLUSERS U ON U.ACCOUNTNUMBER = AI.ACCOUNTNUMBER WHERE U.ACCOUNTNUMBER = ?",SystemInfo.getDb().getCrypt(), this.accountnumber);
 	    
 		request.put("request-id", reqid);
-		request.put("destination",row.getString("ACCOUNTNUMBER"));
-			request2.put("password", cashier.getString("PASSWORD"));
+		request.put("destination",this.accountnumber);
+			request2.put("password", row.getString("PASSWORD"));
 		request.put("auth", request2);
 				request3.put("reference", this.remarks);
-				request3.put("pocket-id", cashier.getString("ROOT"));
+				request3.put("pocket-id", row.getString("ROOT"));
 				request3.put("amount", amountone);
 		request.put("payments", array);
 		array.add(request3);
@@ -77,8 +77,8 @@ public class CashierCashout extends Model{
 	    headers.put("Content-Type", prop.getType());
 	    headers.put("token",prop.getToken());
 	    headers.put("X-Forwarded-For","127.0.0.1");
-	    byte[] apiResponse = client.httpPost(prop.getUrl()+this.accountnumber+"/transfers", null, headers, null, entity);
-	    Logger.LogServer("Cashier Cashout url:"+prop.getUrl()+this.accountnumber+"/transfers");
+	    byte[] apiResponse = client.httpPost(prop.getUrl()+row.getString("ACCOUNTNUMBER")+"/cashout", null, headers, null, entity);
+	    Logger.LogServer("Cashier Cashout url:"+prop.getUrl()+row.getString("ACCOUNTNUMBER")+"/cashout");
 	   	Logger.LogServer("Cashier Cashout response:"+new String(apiResponse, "UTF-8"));
 	    if(apiResponse.length>0){
 	    	JSONObject object = (JSONObject)new JSONParser().parse(new String(apiResponse, "UTF-8"));	    

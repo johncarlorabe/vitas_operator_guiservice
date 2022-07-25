@@ -76,7 +76,8 @@ public class CardCashin extends Model{
 	    }
 		request.put("request-id", reqid);
 		request.put("destination",cashierdetails.getString("ACCOUNTNUMBER"));
-			request2.put("password", row.getString("PASSWORD"));
+		//To avoid conflict with mobile app, password is static to 1234 -07252022
+		request2.put("business", row.getString("PASSWORD"));
 		request.put("auth", request2);
 				request3.put("reference", this.referencenumber);
 				request3.put("pocket-id", row.getString("ROOT"));

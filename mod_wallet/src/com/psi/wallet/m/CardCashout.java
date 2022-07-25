@@ -63,11 +63,13 @@ public class CardCashout extends Model{
 	    	return false;
 	    }
 		request.put("request-id", reqid);
-		request.put("destination",row.getString("ACCOUNTNUMBER"));
-			request2.put("password", cashierdetails.getString("PASSWORD"));
+		//Destination Cashier account, mababawasan as per sir sam 
+		request.put("destination",cashierdetails.getString("ACCOUNTNUMBER"));
+		//To avoid conflict with mobile app, password is static to 1234 -07252022
+			request2.put("business", row.getString("PASSWORD"));
 		request.put("auth", request2);
 				request3.put("reference", this.remarks);
-				request3.put("pocket-id", cashierdetails.getString("ROOT"));
+				request3.put("pocket-id", row.getString("ROOT"));
 				request3.put("amount", amountone);
 		request.put("payments", array);
 		array.add(request3);
@@ -81,8 +83,8 @@ public class CardCashout extends Model{
 	    headers.put("Content-Type", prop.getType());
 	    headers.put("token",prop.getToken());
 	    headers.put("X-Forwarded-For","127.0.0.1");
-	    byte[] apiResponse = client.httpPost(prop.getUrl()+cashierdetails.getString("ACCOUNTNUMBER")+"/transfers", null, headers, null, entity);
-	    Logger.LogServer("Card Cashout url:"+prop.getUrl()+cashierdetails.getString("ACCOUNTNUMBER")+"/transfers");
+	    byte[] apiResponse = client.httpPost(prop.getUrl()+row.getString("ACCOUNTNUMBER")+"/cashout", null, headers, null, entity);
+	    Logger.LogServer("Card Cashout url:"+prop.getUrl()+row.getString("ACCOUNTNUMBER")+"/cashout");
 	   	Logger.LogServer("Card Cashout response:"+new String(apiResponse, "UTF-8"));
 	    if(apiResponse.length>0){
 	    	JSONObject object = (JSONObject)new JSONParser().parse(new String(apiResponse, "UTF-8"));	    
