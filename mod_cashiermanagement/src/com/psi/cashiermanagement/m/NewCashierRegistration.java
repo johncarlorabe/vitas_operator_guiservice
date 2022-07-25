@@ -51,7 +51,8 @@ public class NewCashierRegistration extends Cashier{
 		request.put("valid-id-desc","COMPANY");
 			request2.put("password", "1234");
 		request.put("auth", request2);
-				request3.put("password", this.getPassword());
+				//Static 1234 password for mobile application 07252022
+				request3.put("password", 1234);
 				request3.put("account-name", this.firstname +" "+ this.lastname);
 				request3.put("business-name", branch.getString("BRANCH"));
 				request3.put("first-name", this.firstname);
