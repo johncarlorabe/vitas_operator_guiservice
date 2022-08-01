@@ -290,7 +290,8 @@ public class NewSession extends AbstractNewSession{
 				this.setState(new ObjectState(vStatusCode.getValue().toString()));
 				this.getToken().UserId = this.getAccount().getId();
 				DataRow rr = db.QueryDataRow("SELECT * FROM TBLUSERS WHERE USERID=?", this.getAccount().getId());
-				this.setGui((String)this.db.QueryScalar("SELECT LOWER(DECRYPT(FQN,?,ACCOUNTNUMBER)) FROM ADMDBMC.TBLACCOUNTINFO WHERE ID = ?", "", new Object[] { this.db.getCrypt(), this.db.QueryScalar("SELECT ROOT FROM ADMDBMC.TBLACCOUNTINFO WHERE ACCOUNTNUMBER = ?", "", new Object[] { rr.getString("ACCOUNTNUMBER") }) }));
+				//this.setGui((String)this.db.QueryScalar("SELECT LOWER(DECRYPT(FQN,?,ACCOUNTNUMBER)) FROM ADMDBMC.TBLACCOUNTINFO WHERE ID = ?", "", new Object[] { this.db.getCrypt(), this.db.QueryScalar("SELECT ROOT FROM ADMDBMC.TBLACCOUNTINFO WHERE ACCOUNTNUMBER = ?", "", new Object[] { rr.getString("ACCOUNTNUMBER") }) }));
+				this.setGui((String)this.db.QueryScalar("SELECT ACCOUNTNUMBER FROM ADMDBMC.TBLACCOUNTINFO WHERE ID = ?", "", new Object[] { this.db.getCrypt(), this.db.QueryScalar("SELECT ROOT FROM ADMDBMC.TBLACCOUNTINFO WHERE ACCOUNTNUMBER = ?", "", new Object[] { rr.getString("ACCOUNTNUMBER") }) }));
 				this.setAccountnumber(rr.getString("ACCOUNTNUMBER"));
 				this.setSessionid(rr.getString("SESSIONID"));
 				this.setIsfirstlogon(rr.getString("ISFIRSTLOGON"));
