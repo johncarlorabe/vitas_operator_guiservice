@@ -68,6 +68,7 @@ public class NewBusinessCommand
         reg.setSaturday(saturday);
         reg.setSunday(sunday);
         reg.setAccountnumber(accountnumber);
+        reg.setAuthorizedSession(sess);
         
         try {
           if (reg.exist()) {
