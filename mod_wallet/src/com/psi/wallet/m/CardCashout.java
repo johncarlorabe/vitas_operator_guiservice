@@ -29,6 +29,7 @@ public class CardCashout extends Model{
 	protected String remarks;
 	protected String description;
 	protected String cardnumber;
+	protected String otp;
 	
 	@SuppressWarnings("unchecked")
 	public boolean topup() throws ParseException, IOException{
@@ -36,7 +37,9 @@ public class CardCashout extends Model{
 		JSONObject request = new JSONObject();
 		JSONObject request2 = new JSONObject();
 		JSONObject request3 = new JSONObject();
+		JSONObject request4 = new JSONObject();
 		JSONArray array = new JSONArray();
+		JSONObject paymentdata = new JSONObject();
 		
 		String reqid = SystemInfo.getDb().QueryScalar("SELECT ADMDBMC.GETREFERENCEID(7800) FROM DUAL", "0");
 	    NumberFormat format = NumberFormat.getInstance(Locale.US);
@@ -55,16 +58,24 @@ public class CardCashout extends Model{
 			}
 		
 	    
-	    DataRow row = SystemInfo.getDb().QueryDataRow("SELECT DECRYPT(AI.PASSWORD,?,AI.ACCOUNTNUMBER) PASSWORD,U.USERNAME,AI.ROOT,U.ACCOUNTNUMBER FROM ADMDBMC.TBLACCOUNTINFO AI INNER JOIN TBLUSERS U ON U.ACCOUNTNUMBER = AI.ACCOUNTNUMBER WHERE U.USERID = ?",SystemInfo.getDb().getCrypt(), this.id);
-	    DataRow cashierdetails = SystemInfo.getDb().QueryDataRow("SELECT DECRYPT(PASSWORD,?,ACCOUNTNUMBER) PASSWORD,ROOT,ACCOUNTNUMBER FROM ADMDBMC.TBLACCOUNTINFO WHERE MSISDN= ?",SystemInfo.getDb().getCrypt(),this.cardnumber);
-   	    
-	    if(cashierdetails.isEmpty()) {
+	    DataRow row = SystemInfo.getDb().QueryDataRow("SELECT DECRYPT(AI.PASSWORD,?,AI.ACCOUNTNUMBER) PASSWORD,U.USERNAME,AI.ROOT,U.ACCOUNTNUMBER,AI.MSISDN FROM ADMDBMC.TBLACCOUNTINFO AI INNER JOIN TBLUSERS U ON U.ACCOUNTNUMBER = AI.ACCOUNTNUMBER WHERE U.USERID = ?",SystemInfo.getDb().getCrypt(), this.id);
+	    DataRow carddetails = SystemInfo.getDb().QueryDataRow("SELECT DECRYPT(PASSWORD,?,ACCOUNTNUMBER) PASSWORD,ROOT,ACCOUNTNUMBER,MSISDN FROM ADMDBMC.TBLACCOUNTINFO WHERE MSISDN= ?",SystemInfo.getDb().getCrypt(),this.cardnumber);
+	      
+	    if(carddetails.isEmpty()) {
 	    	this.setState(new ObjectState("99","Account does not exist"));
 	    	return false;
 	    }
+	    
+	    //DataRow otp = SystemInfo.getDb().QueryDataRow("SELECT CARDNUMBER,DECRYPT(OTP,?,CARDNUMBER) OTP FROM SOLBPH.TBLCARDOTP WHERE CARDNUMBER=?",SystemInfo.getDb().getCrypt(), carddetails.getString("MSISDN"));
+		 
+	    if(otp.isEmpty()) {
+	    	this.setState(new ObjectState("99","Cannot proceed with the transaction, please try again later."));
+	    	return false;
+	    }
+	    
 		request.put("request-id", reqid);
-		//Destination Cashier account, mababawasan as per sir sam 
-		request.put("destination",cashierdetails.getString("ACCOUNTNUMBER"));
+		//Destination card account, mababawasan as per sir sam 
+		request.put("destination",carddetails.getString("ACCOUNTNUMBER"));
 		//To avoid conflict with mobile app, password is static to 1234 -07252022
 			request2.put("business", row.getString("PASSWORD"));
 		request.put("auth", request2);
@@ -73,6 +84,8 @@ public class CardCashout extends Model{
 				request3.put("amount", amountone);
 		request.put("payments", array);
 		array.add(request3);
+		paymentdata.put("otp",  this.getOtp());
+		request.put("payment-data", paymentdata);
 		
 		Logger.LogServer(request.toString());
 		
@@ -114,6 +127,9 @@ public class CardCashout extends Model{
 	    	return false;
 	    }
 	}
+	
+	
+
 	public boolean validate(){
 		return SystemInfo.getDb().QueryDataRow("SELECT * FROM TBLUSERS WHERE USERID=? AND PASSWORD=ENCRYPT(?,?,USERNAME)", this.id,this.password,SystemInfo.getDb().getCrypt()).size()>0;
 	}
@@ -179,6 +195,18 @@ public class CardCashout extends Model{
 	}
 	public void setCardnumber(String cardnumber) {
 		this.cardnumber = cardnumber;
+	}
+
+
+
+	public String getOtp() {
+		return otp;
+	}
+
+
+
+	public void setOtp(String otp) {
+		this.otp = otp;
 	}
 	
 }

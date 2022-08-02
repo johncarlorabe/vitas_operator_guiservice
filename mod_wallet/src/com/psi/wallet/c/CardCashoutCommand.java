@@ -41,6 +41,7 @@ public class CardCashoutCommand extends UICommand{
 				String accountnumber = this.params.get("AccountNumber");
 				String description = this.params.get("Description");
 				String cardnumber = this.params.get("CardNumber");
+				String otp = this.params.get("OTP");
 				
 	
 				CardCashout topup = new CardCashout();
@@ -51,6 +52,7 @@ public class CardCashoutCommand extends UICommand{
 				topup.setRemarks(remark);
 				topup.setDescription("CARD CASH OUT");
 				topup.setCardnumber(cardnumber);
+				topup.setOtp(otp);
 				topup.setAuthorizedSession(sess);
 				
 						if(!topup.validate()){

@@ -68,14 +68,14 @@ public class CardCashin extends Model{
 		
 	    
 	    DataRow row = SystemInfo.getDb().QueryDataRow("SELECT DECRYPT(AI.PASSWORD,?,AI.ACCOUNTNUMBER) PASSWORD,U.USERNAME,AI.ROOT,U.ACCOUNTNUMBER FROM ADMDBMC.TBLACCOUNTINFO AI INNER JOIN TBLUSERS U ON U.ACCOUNTNUMBER = AI.ACCOUNTNUMBER WHERE U.USERID = ?",SystemInfo.getDb().getCrypt(), this.id);
-	    DataRow cashierdetails = SystemInfo.getDb().QueryDataRow("SELECT ACCOUNTNUMBER FROM ADMDBMC.TBLACCOUNTINFO WHERE MSISDN= ?",this.cardnumber);
+	    DataRow carddetails = SystemInfo.getDb().QueryDataRow("SELECT ACCOUNTNUMBER FROM ADMDBMC.TBLACCOUNTINFO WHERE MSISDN= ?",this.cardnumber);
 	   	    
-	    if(cashierdetails.isEmpty()) {
+	    if(carddetails.isEmpty()) {
 	    	this.setState(new ObjectState("99","Account does not exist"));
 	    	return false;
 	    }
 		request.put("request-id", reqid);
-		request.put("destination",cashierdetails.getString("ACCOUNTNUMBER"));
+		request.put("destination",carddetails.getString("ACCOUNTNUMBER"));
 		//To avoid conflict with mobile app, password is static to 1234 -07252022
 		request2.put("business", row.getString("PASSWORD"));
 		request.put("auth", request2);
