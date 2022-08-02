@@ -34,7 +34,16 @@ public class Branch extends Model{
 	protected String password;
 	protected String remarks;
 	protected String grosssales;
+	protected String registeredby;
 	
+	
+	
+	public String getRegisteredby() {
+		return registeredby;
+	}
+	public void setRegisteredby(String registeredby) {
+		this.registeredby = registeredby;
+	}
 	public String getBranchname() {
 		return branchname;
 	}
