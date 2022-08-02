@@ -38,7 +38,7 @@ public class RegisteredCollection extends ModelCollection{
 		         m.setProperty("UsersLevel", row.getString("USERSLEVEL") == null ? "" : row.getString("USERSLEVEL").toString());
 		         m.setProperty("Status", row.getString("STATUS") == null ? "" : row.getString("STATUS").toString());
 		         m.setProperty("AccountNumber", row.getString("ACCOUNTNUMBER") == null ? "" : row.getString("ACCOUNTNUMBER").toString());
-		         m.setProperty("CURRENTBAL", row.getString("CURRENTBAL") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("CURRENTBAL").toString())));
+		         m.setProperty("CurrentBalance", row.getString("CURRENTBAL") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("CURRENTBAL").toString())));
 					
 		         add(m);
 	    	 }
