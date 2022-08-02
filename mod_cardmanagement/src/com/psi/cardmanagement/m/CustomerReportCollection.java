@@ -18,11 +18,20 @@ public class CustomerReportCollection extends ModelCollection{
 	protected String dateto;
 	protected String msisdn;
 	protected String accountnumber;
+	protected String module;
 	
+
+	public String getModule() {
+		return module;
+	}
+
+	public void setModule(String module) {
+		this.module = module;
+	}
 
 	public boolean hasRows() {
 		
-		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLVITASCARDTRANSACTIONS WHERE TIMESTAMP BETWEEN TO_DATE(?,'YYYY-MM-DD') AND TO_DATE(?,'YYYY-MM-DD') + 1 AND ? IN (TOACCOUNT,FRACCOUNT) ORDER BY TIMESTAMP DESC",this.datefrom,this.dateto,this.accountnumber);
+		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM MJCSXP.VWALLVITASCARDTRANSACTIONS WHERE TIMESTAMP BETWEEN TO_DATE(?,'YYYY-MM-DD') AND TO_DATE(?,'YYYY-MM-DD') + 1 AND ACCOUNTNUMBER=? ORDER BY TIMESTAMP DESC",this.datefrom,this.dateto,this.accountnumber);
 		 if (!r.isEmpty())
 		 {
 			 for(DataRow row: r){
@@ -31,10 +40,27 @@ public class CustomerReportCollection extends ModelCollection{
 			 	        m.setProperty(key, row.getString(key).toString());
 			 	 }
 				 m.setProperty("AMOUNT", row.getString("AMOUNT") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("AMOUNT").toString())));
-				 m.setProperty("DESTBALANCEBEFORE", row.getString("DESTBALANCEBEFORE") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("DESTBALANCEBEFORE").toString())));
-				 m.setProperty("DESTBALANCEAFTER", row.getString("DESTBALANCEAFTER") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("DESTBALANCEAFTER").toString())));
-				 m.setProperty("SOURCEBALANCEBEFORE", row.getString("SRCBALANCEBEFORE") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("SRCBALANCEBEFORE").toString())));
-				 m.setProperty("SOURCEBALANCEAFTER", row.getString("SRCBALANCEAFTER") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("SRCBALANCEAFTER").toString())));
+				 m.setProperty("BALANCEBEFORE", row.getString("BALANCEBEFORE") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("BALANCEBEFORE").toString())));
+				 m.setProperty("BALANCEAFTER", row.getString("BALANCEAFTER") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("BALANCEAFTER").toString())));
+				  add(m);
+			 }
+		 }
+		 return r.size() > 0;
+	}
+	
+	public boolean filterByType() {
+		
+		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM MJCSXP.VWALLVITASCARDTRANSACTIONS WHERE TIMESTAMP BETWEEN TO_DATE(?,'YYYY-MM-DD') AND TO_DATE(?,'YYYY-MM-DD') + 1 AND ACCOUNTNUMBER=? AND MODULE=? ORDER BY TIMESTAMP DESC",this.datefrom,this.dateto,this.accountnumber,this.type);
+		 if (!r.isEmpty())
+		 {
+			 for(DataRow row: r){
+				 ReportItem m = new ReportItem();
+				 for (String key : row.keySet()) {
+			 	        m.setProperty(key, row.getString(key).toString());
+			 	 }
+				 m.setProperty("AMOUNT", row.getString("AMOUNT") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("AMOUNT").toString())));
+				 m.setProperty("BALANCEBEFORE", row.getString("BALANCEBEFORE") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("BALANCEBEFORE").toString())));
+				 m.setProperty("BALANCEAFTER", row.getString("BALANCEAFTER") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("BALANCEAFTER").toString())));
 				 add(m);
 			 }
 		 }

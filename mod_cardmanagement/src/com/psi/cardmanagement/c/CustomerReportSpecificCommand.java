@@ -64,73 +64,33 @@ public class CustomerReportSpecificCommand extends UICommand {
 						audit.insert();
 						return new NoDataFoundView(state);
 					}
-				} else if (type.equals("CASHIN")) {
-					if (model.hasRowsCashin()) {
-						AuditTrail audit = new AuditTrail();
-						audit.setIp(model.getAuthorizedSession().getIpAddress());
-						audit.setModuleid(String.valueOf(this.getId()));
-						audit.setEntityid(type);
-						audit.setLog("Successfully fetched data");
-						audit.setStatus("00");
-						audit.setUserid(model.getAuthorizedSession().getAccount().getId());
-						audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
-
-						audit.insert();
-						return new CollectionView("00", model);
-					} else {
-						ObjectState state = new ObjectState("01", "No data found");
-						AuditTrail audit = new AuditTrail();
-						audit.setIp(model.getAuthorizedSession().getIpAddress());
-						audit.setModuleid(String.valueOf(this.getId()));
-						audit.setEntityid(type);
-						audit.setLog("No data found");
-						audit.setStatus("01");
-						audit.setUserid(model.getAuthorizedSession().getAccount().getId());
-						audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
-
-						audit.insert();
-						return new NoDataFoundView(state);
-					}
-				} else if (type.equals("CASHOUT")) {
-					if (model.hasRowsCashout()) {
-						AuditTrail audit = new AuditTrail();
-						audit.setIp(model.getAuthorizedSession().getIpAddress());
-						audit.setModuleid(String.valueOf(this.getId()));
-						audit.setEntityid(type);
-						audit.setLog("Successfully fetched data");
-						audit.setStatus("00");
-						audit.setUserid(model.getAuthorizedSession().getAccount().getId());
-						audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
-
-						audit.insert();
-						return new CollectionView("00", model);
-					} else {
-						ObjectState state = new ObjectState("01", "No data found");
-						AuditTrail audit = new AuditTrail();
-						audit.setIp(model.getAuthorizedSession().getIpAddress());
-						audit.setModuleid(String.valueOf(this.getId()));
-						audit.setEntityid(type);
-						audit.setLog("No data found");
-						audit.setStatus("01");
-						audit.setUserid(model.getAuthorizedSession().getAccount().getId());
-						audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
-
-						audit.insert();
-						return new NoDataFoundView(state);
-					}
 				} else {
-					ObjectState state = new ObjectState("01", "Service is currently unavailable");
-					AuditTrail audit = new AuditTrail();
-					audit.setIp(model.getAuthorizedSession().getIpAddress());
-					audit.setModuleid(String.valueOf(this.getId()));
-					audit.setEntityid(type);
-					audit.setLog("Service is currently unavailable");
-					audit.setStatus("01");
-					audit.setUserid(model.getAuthorizedSession().getAccount().getId());
-					audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
+					if (model.filterByType()) {
+						AuditTrail audit = new AuditTrail();
+						audit.setIp(model.getAuthorizedSession().getIpAddress());
+						audit.setModuleid(String.valueOf(this.getId()));
+						audit.setEntityid(type);
+						audit.setLog("Successfully fetched data");
+						audit.setStatus("00");
+						audit.setUserid(model.getAuthorizedSession().getAccount().getId());
+						audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
 
-					audit.insert();
-					return new NoDataFoundView(state);
+						audit.insert();
+						return new CollectionView("00", model);
+					} else {
+						ObjectState state = new ObjectState("01", "No data found");
+						AuditTrail audit = new AuditTrail();
+						audit.setIp(model.getAuthorizedSession().getIpAddress());
+						audit.setModuleid(String.valueOf(this.getId()));
+						audit.setEntityid(type);
+						audit.setLog("No data found");
+						audit.setStatus("01");
+						audit.setUserid(model.getAuthorizedSession().getAccount().getId());
+						audit.setUsername(model.getAuthorizedSession().getAccount().getUserName());
+
+						audit.insert();
+						return new NoDataFoundView(state);
+					}
 				}
 
 			} else {
