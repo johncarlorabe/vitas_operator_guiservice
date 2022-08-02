@@ -12,7 +12,7 @@ public class BranchesCollection extends ModelCollection{
 	@Override
 	public boolean hasRows() {
 		if(!this.accountnumber.equals("834591471124")){
-			DataRowCollection rows = SystemInfo.getDb().QueryDataRows("SELECT ID,BRANCH,ACCOUNTNUMBER,BRANCHCODE FROM TBLBRANCHES WHERE STATUS = 1 AND KEYACCOUNT = ? ",this.accountnumber);
+			DataRowCollection rows = SystemInfo.getDb().QueryDataRows("SELECT ID,BRANCH,ACCOUNTNUMBER,BRANCHCODE FROM TBLBRANCHES WHERE STATUS = 1 AND KEYACCOUNT = ? ORDER BY BRANCH ASC",this.accountnumber);
 			if (!rows.isEmpty())
 		     {
 		    	 for(DataRow row: rows){	
@@ -25,7 +25,7 @@ public class BranchesCollection extends ModelCollection{
 		     }
 		     return rows.size() > 0;
 		}else{
-			DataRowCollection rows = SystemInfo.getDb().QueryDataRows("SELECT ID,BRANCH,ACCOUNTNUMBER,BRANCHCODE FROM TBLBRANCHES WHERE NATUREOFBUSINESS IS NOT NULL AND STATUS = 1 AND KEYACCOUNT = ? ",this.accountnumber);
+			DataRowCollection rows = SystemInfo.getDb().QueryDataRows("SELECT ID,BRANCH,ACCOUNTNUMBER,BRANCHCODE FROM TBLBRANCHES WHERE NATUREOFBUSINESS IS NOT NULL AND STATUS = 1 AND KEYACCOUNT = ? ORDER BY BRANCH ASC",this.accountnumber);
 			if (!rows.isEmpty())
 		     {
 		    	 for(DataRow row: rows){	
