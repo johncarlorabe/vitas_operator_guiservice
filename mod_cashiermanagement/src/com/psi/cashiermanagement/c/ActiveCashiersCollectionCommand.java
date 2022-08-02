@@ -27,7 +27,7 @@ public class ActiveCashiersCollectionCommand extends UICommand{
 				
 				RegisteredCollection col = new RegisteredCollection();
 						
-				col.setId(accountnumber);	
+				col.setAccountnumber(accountnumber);	
 			    col.setAuthorizedSession(sess);
 				
 				if(col.getActiveCashiers()){
