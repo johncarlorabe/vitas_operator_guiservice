@@ -50,6 +50,7 @@ protected String accountnumber;
 		        	 m.setProperty("Tin", row.getString("TIN") == null ? "" : row.getString("TIN").toString());
 		        	 m.setProperty("NatureOfBusiness", row.getString("NATUREOFBUSINESS") == null ? "" : row.getString("NATUREOFBUSINESS").toString());
 		        	 m.setProperty("GrossSales", row.getString("GROSSSALES") == null ? "" : row.getString("GROSSSALES").toString());
+		        	 m.setProperty("RegisteredBy", row.getString("REGISTEREDBY") == null ? "" : row.getString("REGISTEREDBY").toString());
 		        	 
 		         }else{
 		        	 m.setProperty("Id", row.getString("ID") == null ? "" : row.getString("ID").toString());
@@ -81,6 +82,7 @@ protected String accountnumber;
 		        	 m.setProperty("Tin", row.getString("TIN") == null ? "" : row.getString("TIN").toString());
 		        	 m.setProperty("NatureOfBusiness", row.getString("NATUREOFBUSINESS") == null ? "" : row.getString("NATUREOFBUSINESS").toString());
 		        	 m.setProperty("GrossSales", row.getString("GROSSSALES") == null ? "" : row.getString("GROSSSALES").toString());
+		        	 m.setProperty("RegisteredBy", row.getString("REGISTEREDBY") == null ? "" : row.getString("REGISTEREDBY").toString());
 		        	 
 		         }
 
@@ -125,7 +127,7 @@ protected String accountnumber;
 	        	 m.setProperty("Tin", row.getString("TIN") == null ? "" : row.getString("TIN").toString());
 	        	 m.setProperty("NatureOfBusiness", row.getString("NATUREOFBUSINESS") == null ? "" : row.getString("NATUREOFBUSINESS").toString());
 	        	 m.setProperty("GrossSales", row.getString("GROSSSALES") == null ? "" : row.getString("GROSSSALES").toString());
-	        	 
+	        	 m.setProperty("RegisteredBy", row.getString("REGISTEREDBY") == null ? "" : row.getString("REGISTEREDBY").toString());
 	        	 add(m);
     	 }
      }
@@ -164,6 +166,7 @@ protected String accountnumber;
  		        	 m.setProperty("Tin", row.getString("TIN") == null ? "" : row.getString("TIN").toString());
  		        	 m.setProperty("NatureOfBusiness", row.getString("NATUREOFBUSINESS") == null ? "" : row.getString("NATUREOFBUSINESS").toString());
  		        	m.setProperty("GrossSales", row.getString("GROSSSALES") == null ? "" : row.getString("GROSSSALES").toString());
+ 		        	 m.setProperty("RegisteredBy", row.getString("REGISTEREDBY") == null ? "" : row.getString("REGISTEREDBY").toString());
 		        	 
  		        	 add(m);
  	    	 }
@@ -208,6 +211,7 @@ protected String accountnumber;
 		        	 m.setProperty("Tin", row.getString("TIN") == null ? "" : row.getString("TIN").toString());
 		        	 m.setProperty("NatureOfBusiness", row.getString("NATUREOFBUSINESS") == null ? "" : row.getString("NATUREOFBUSINESS").toString());
 		        	 m.setProperty("GrossSales", row.getString("GROSSSALES") == null ? "" : row.getString("GROSSSALES").toString());
+		        	 m.setProperty("RegisteredBy", row.getString("REGISTEREDBY") == null ? "" : row.getString("REGISTEREDBY").toString());
 		        	 
 		        	 add(m);
 	    	 }
