@@ -12,29 +12,29 @@ public class ManageBranch extends Branch{
 		if(!rr.getString("KEYACCOUNT").equals("834591471124")){
 		DataRow row = SystemInfo.getDb().QueryDataRow("SELECT AI.*,DECRYPT(FQN,?,ACCOUNTNUMBER) ALIAS FROM ADMDBMC.TBLACCOUNTINFOPNDG AI WHERE ACCOUNTNUMBER = ?", SystemInfo.getDb().getCrypt(),this.accountnumber);
 		
-		if(!row.isEmpty()){
-			StringBuilder query = new StringBuilder("BEGIN\n");
-			query.append("INSERT INTO ADMDBMC.TBLACCOUNTINFO (ID, ACCOUNTNUMBER, STATUS, LOCKED, EMAIL, FQN, NETWORK, MSISDN, TYPE, "
-					+ "	REGDATE, LANGUAGE, PASSWORD, OTP, LASTNAME, FIRSTNAME, MIDDLENAME, TIN, "
-					+ "	SSS, ROOT, PARENT, CITY, SPECIFICADDRESS, POSTALCODE, COORDINATES) "
-					+" VALUES "
-					+" ( ?, ?, 'ACTIVE', 'NO', ?, ?, ?, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); \n");
-			query.append("UPDATE TBLBRANCHES SET ACCOUNTNUMBER=?,STATUS = 1 WHERE CONTACTNUMBER = ? AND BRANCH=?;\n");
-			query.append("COMMIT;\nEXCEPTION WHEN OTHERS THEN\n	ROLLBACK;\n RAISE;\nEND;");
-			 
-			int res = SystemInfo.getDb().QueryUpdate(query.toString(),row.getString("ID"),row.getString("ACCOUNTNUMBER"),row.getString("EMAIL"),row.getString("FQN"),row.getString("NETWORK"),row.getString("MSISDN"),row.getString("TYPE"),
-					row.getString("LANGUAGE"),row.getString("PASSWORD"),row.getString("OTP"),row.getString("LASTNAME"),row.getString("FIRSTNAME"),row.getString("MIDDLENAME"),row.getString("TIN"),
-					row.getString("SSS"),row.getString("ROOT"),row.getString("PARENT"),row.getString("CITY"),row.getString("SPECIFICADDRESS"),row.getString("POSTALCODE"),row.getString("COORDINATES"),
-					row.getString("ACCOUNTNUMBER"),row.getString("MSISDN"),row.getString("ALIAS"));
-			
-			if(res>0){
-				return SystemInfo.getDb().QueryUpdate("DELETE FROM ADMDBMC.TBLACCOUNTINFOPNDG WHERE ACCOUNTNUMBER =?", this.accountnumber)>0;
+			if(!row.isEmpty()){
+				StringBuilder query = new StringBuilder("BEGIN\n");
+				query.append("INSERT INTO ADMDBMC.TBLACCOUNTINFO (ID, ACCOUNTNUMBER, STATUS, LOCKED, EMAIL, FQN, NETWORK, MSISDN, TYPE, "
+						+ "	REGDATE, LANGUAGE, PASSWORD, OTP, LASTNAME, FIRSTNAME, MIDDLENAME, TIN, "
+						+ "	SSS, ROOT, PARENT, CITY, SPECIFICADDRESS, POSTALCODE, COORDINATES) "
+						+" VALUES "
+						+" ( ?, ?, 'ACTIVE', 'NO', ?, ?, ?, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); \n");
+				query.append("UPDATE TBLBRANCHES SET ACCOUNTNUMBER=?,STATUS = 1 WHERE CONTACTNUMBER = ? AND BRANCH=?;\n");
+				query.append("COMMIT;\nEXCEPTION WHEN OTHERS THEN\n	ROLLBACK;\n RAISE;\nEND;");
+				 
+				int res = SystemInfo.getDb().QueryUpdate(query.toString(),row.getString("ID"),row.getString("ACCOUNTNUMBER"),row.getString("EMAIL"),row.getString("FQN"),row.getString("NETWORK"),row.getString("MSISDN"),row.getString("TYPE"),
+						row.getString("LANGUAGE"),row.getString("PASSWORD"),row.getString("OTP"),row.getString("LASTNAME"),row.getString("FIRSTNAME"),row.getString("MIDDLENAME"),row.getString("TIN"),
+						row.getString("SSS"),row.getString("ROOT"),row.getString("PARENT"),row.getString("CITY"),row.getString("SPECIFICADDRESS"),row.getString("POSTALCODE"),row.getString("COORDINATES"),
+						row.getString("ACCOUNTNUMBER"),row.getString("MSISDN"),row.getString("ALIAS"));
+				
+				if(res>0){
+					return SystemInfo.getDb().QueryUpdate("DELETE FROM ADMDBMC.TBLACCOUNTINFOPNDG WHERE ACCOUNTNUMBER =?", this.accountnumber)>0;
+				}else{
+					return false;
+				}
 			}else{
 				return false;
 			}
-		}else{
-			return false;
-		}
 		}else{
 				return SystemInfo.getDb().QueryUpdate("UPDATE TBLBRANCHES SET STATUS = 1 WHERE ACCOUNTNUMBER=?",this.accountnumber)>0;
 		}
