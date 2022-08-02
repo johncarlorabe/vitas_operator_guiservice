@@ -33,7 +33,7 @@ public class PendingBranchColCommand extends UICommand{
 		    		audit.setIp(col.getAuthorizedSession().getIpAddress());
 		    		audit.setModuleid(String.valueOf(this.getId()));
 		    		audit.setEntityid("");
-		    		audit.setLog("Successfully fetched pending branch data");
+		    		audit.setLog("Successfully fetched pending Sys Account data");
 		    		audit.setStatus("00");
 		    		audit.setUserid(col.getAuthorizedSession().getAccount().getId());
 		    		audit.setUsername(col.getAuthorizedSession().getAccount().getUserName());
@@ -41,7 +41,7 @@ public class PendingBranchColCommand extends UICommand{
 		    		audit.insert();
 					return new CollectionView("00",col);  
 				}else{
-						ObjectState state = new ObjectState("01", "No pending branch data found");
+						ObjectState state = new ObjectState("01", "No pending Sys Account data found");
 						AuditTrail audit  = new AuditTrail();
 			    		audit.setIp(col.getAuthorizedSession().getIpAddress());
 			    		audit.setModuleid(String.valueOf(this.getId()));

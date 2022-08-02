@@ -46,7 +46,7 @@ public class ApprovedBranchCommand extends UICommand{
 							return new JsonView(reg);
 						}
 						if(!reg.exist()){
-							reg.setState(new ObjectState("03", "Merchant account do not exist"));
+							reg.setState(new ObjectState("03", "Sys Account do not exist"));
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
@@ -60,7 +60,7 @@ public class ApprovedBranchCommand extends UICommand{
 							return new JsonView(reg);
 						}
 						if(reg.approve()){
-							reg.setState(new ObjectState("00", "Successfully approved dealer account"));
+							reg.setState(new ObjectState("00", "Successfully approved Sys Account"));
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
@@ -73,7 +73,7 @@ public class ApprovedBranchCommand extends UICommand{
 				    		audit.insert();
 							return new JsonView(reg);
 						}else{
-							reg.setState(new ObjectState("01", "Failed! Unable to approve dealer account"));
+							reg.setState(new ObjectState("01", "Failed! Unable to approve Sys Account"));
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));

@@ -48,7 +48,7 @@ public class RejectBranchCommand extends UICommand{
 							return new JsonView(reg);
 						}
 						if(!reg.exist()){
-							reg.setState(new ObjectState("03", "Dealer account do not exist"));
+							reg.setState(new ObjectState("03", "Sys Account do not exist"));
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
@@ -62,7 +62,7 @@ public class RejectBranchCommand extends UICommand{
 							return new JsonView(reg);
 						}
 						if(reg.reject()){
-							reg.setState(new ObjectState("00", "Successfully rejected dealer account"));
+							reg.setState(new ObjectState("00", "Successfully rejected Sys Account"));
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
@@ -75,7 +75,7 @@ public class RejectBranchCommand extends UICommand{
 				    		audit.insert();
 							return new JsonView(reg);
 						}else{
-							reg.setState(new ObjectState("01", "Failed! Unable to reject dealer account"));
+							reg.setState(new ObjectState("01", "Failed! Unable to reject Sys Account"));
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));

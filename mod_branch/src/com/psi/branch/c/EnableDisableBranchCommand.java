@@ -45,7 +45,7 @@ public class EnableDisableBranchCommand extends UICommand{
 							return new JsonView(reg);
 						}
 						if(reg.update()){
-							reg.setState(new ObjectState("00", "Successfully change branch status"));
+							reg.setState(new ObjectState("00", "Successfully changed Sys Account status"));
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));

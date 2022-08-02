@@ -70,7 +70,7 @@ public class EditBranchCommand extends UICommand{
 				reg.setRafilename(rafilename);
 				reg.setAuthorizedSession(sess);
 						if(!reg.exist()){
-							reg.setState(new ObjectState("01", "Account do not exist"));
+							reg.setState(new ObjectState("01", "Sys Account does not exist"));
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
@@ -85,7 +85,7 @@ public class EditBranchCommand extends UICommand{
 							return new JsonView(reg);
 						}
 						if(reg.update()){
-							reg.setState(new ObjectState("00", "Account successfully edited"));
+							reg.setState(new ObjectState("00", "Sys Account successfully edited"));
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
