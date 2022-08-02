@@ -31,7 +31,7 @@ public class PendingMerchantColCommand extends UICommand{
 		    		audit.setIp(col.getAuthorizedSession().getIpAddress());
 		    		audit.setModuleid(String.valueOf(this.getId()));
 		    		audit.setEntityid("");
-		    		audit.setLog("Successfully fetched pending merchant data");
+		    		audit.setLog("Successfully fetched pending Sys Account data");
 		    		audit.setStatus("00");
 		    		audit.setUserid(col.getAuthorizedSession().getAccount().getId());
 		    		audit.setUsername(col.getAuthorizedSession().getAccount().getUserName());
@@ -39,12 +39,12 @@ public class PendingMerchantColCommand extends UICommand{
 		    		audit.insert();
 					return new CollectionView("00",col);  
 				}else{
-						ObjectState state = new ObjectState("01", "No pending merchant data found");
+						ObjectState state = new ObjectState("01", "No pending Sys Account data found");
 						AuditTrail audit  = new AuditTrail();
 			    		audit.setIp(col.getAuthorizedSession().getIpAddress());
 			    		audit.setModuleid(String.valueOf(this.getId()));
 			    		audit.setEntityid("");
-			    		audit.setLog("No merchant data found");
+			    		audit.setLog("No Sys Account data found");
 			    		audit.setStatus("01");
 			    		audit.setUserid(col.getAuthorizedSession().getAccount().getId());
 			    		audit.setUsername(col.getAuthorizedSession().getAccount().getUserName());

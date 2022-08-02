@@ -50,6 +50,7 @@ public class NewBranchCommand extends UICommand{
 				String tin = this.params.get("Tin");
 				String natureofbusiness = this.params.get("NatureOfBusiness");
 				String grosssales = this.params.get("GrossSales");
+				String registeredby = this.params.get("RegisteredBy");
 				 	
 				NewBranch reg = new NewBranch();
 				reg.setGrosssales(grosssales);
@@ -76,9 +77,24 @@ public class NewBranchCommand extends UICommand{
 				reg.setRafilelocation(rafilelocation);
 				reg.setRafilename(rafilename);
 			    reg.setAuthorizedSession(sess);
+			    reg.setRegisteredby(registeredby);
 					try {
 						if(reg.exist()){
-							reg.setState(new ObjectState("01", "Account already registered"));
+							reg.setState(new ObjectState("01", "Sys Account already registered"));
+							AuditTrail audit  = new AuditTrail();
+				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
+				    		audit.setModuleid(String.valueOf(this.getId()));
+				    		audit.setEntityid(branchname);
+				    		audit.setLog(reg.getState().getMessage());
+				    		audit.setStatus(reg.getState().getCode());
+				    		audit.setUserid(reg.getAuthorizedSession().getAccount().getId());
+				    		audit.setUsername(reg.getAuthorizedSession().getAccount().getUserName());
+				    		
+				    		audit.insert();
+							return new JsonView(reg);
+						}
+						if(reg.existcontactnumber()){
+							reg.setState(new ObjectState("01", "Sys Account contact number already registered"));
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
@@ -93,7 +109,7 @@ public class NewBranchCommand extends UICommand{
 						}
 						if(reg.register(accountnumber)){
 							AuditTrail audit  = new AuditTrail();
-							reg.setState(new ObjectState("00", "Account succesfully created"));
+							reg.setState(new ObjectState("00", "Sys Account succesfully created"));
 				    		audit.setIp(reg.getAuthorizedSession().getIpAddress());
 				    		audit.setModuleid(String.valueOf(this.getId()));
 				    		audit.setEntityid(branchname);

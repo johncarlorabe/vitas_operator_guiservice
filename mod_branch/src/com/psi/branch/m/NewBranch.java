@@ -40,7 +40,7 @@ public class NewBranch extends Branch{
 		request.put("valid-id-desc","COMPANY");
 		request.put("for-kyc", "true");
 		request.put("kyc", "true");
-			request2.put("password", "1234");
+		request2.put("password", "1234");
 		request.put("auth", request2);
 				request3.put("password", "1234");
 				request3.put("account-name", this.branchname);
@@ -78,9 +78,9 @@ public class NewBranch extends Branch{
 		   
 		    if(object.get("code").toString().equals("100") || object.get("code").toString().equals(100)){
 		    	StringBuilder query = new StringBuilder("BEGIN\n");
-				query.append("INSERT INTO TBLBRANCHES(BRANCH,ACCOUNTNUMBER,ADDRESS,BRANCHCODE,CITY,CONTACTNUMBER,PROOFADDRESS,PROVINCE,XORDINATES,YORDINATES,ZIPCODE,LOCATION,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY,COUNTRY,KEYACCOUNT,RAFILELOCATION,RAFILENAME,STATUS,TIN,NATUREOFBUSINESS,GROSSSALES) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,3,?,?,?); \n");
+				query.append("INSERT INTO TBLBRANCHES(BRANCH,ACCOUNTNUMBER,ADDRESS,BRANCHCODE,CITY,CONTACTNUMBER,PROOFADDRESS,PROVINCE,XORDINATES,YORDINATES,ZIPCODE,LOCATION,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY,COUNTRY,KEYACCOUNT,RAFILELOCATION,RAFILENAME,STATUS,TIN,NATUREOFBUSINESS,GROSSSALES,REGISTEREDBY) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,3,?,?,?,?); \n");
 				query.append("COMMIT;\nEXCEPTION WHEN OTHERS THEN\n	ROLLBACK;\n RAISE;\nEND;");
-				SystemInfo.getDb().QueryUpdate(query.toString(),this.branchname, "", this.address,"BAYAD"+code,this.city,this.contactnumber,this.image,this.province,this.xordinate,this.yordinate,this.zipcode,this.address,this.monday,this.tuesday,this.wednesday,this.thursday,this.friday,this.saturday,this.sunday,this.country,acct,this.rafilelocation,this.rafilename,this.tin,this.natureofbusiness,this.grosssales);		
+				SystemInfo.getDb().QueryUpdate(query.toString(),this.branchname, "", this.address,"BAYAD"+code,this.city,this.contactnumber,this.image,this.province,this.xordinate,this.yordinate,this.zipcode,this.address,this.monday,this.tuesday,this.wednesday,this.thursday,this.friday,this.saturday,this.sunday,this.country,acct,this.rafilelocation,this.rafilename,this.tin,this.natureofbusiness,this.grosssales,this.registeredby);		
 				this.setAccountnumber("");
 		    	this.setState(new ObjectState("0",object.get("message").toString()));
 		    	return true;
@@ -97,7 +97,11 @@ public class NewBranch extends Branch{
 	}
 	
 	public boolean exist(){
-		return SystemInfo.getDb().QueryDataRow("SELECT * FROM TBLBRANCHES WHERE BRANCH=? ", this.branchname).size()>0;
+		return SystemInfo.getDb().QueryDataRow("SELECT * FROM TBLBRANCHES WHERE BRANCH=? AND STATUS = 1", this.branchname).size()>0;
+	}
+	
+	public boolean existcontactnumber(){
+		return SystemInfo.getDb().QueryDataRow("SELECT * FROM TBLBRANCHES WHERE CONTACTNUMBER=?", this.contactnumber).size()>0;
 	}
 
 	public String getAccountnumber() {

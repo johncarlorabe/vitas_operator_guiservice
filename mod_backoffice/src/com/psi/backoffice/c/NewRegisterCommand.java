@@ -5,6 +5,7 @@ import com.psi.backoffice.util.AuditTrail;
 import com.psi.backoffice.util.EmailUtils;
 import com.psi.backoffice.v.JsonView;
 import com.tlc.common.Logger;
+import com.tlc.encryption.PasswordGenerator;
 import com.tlc.gui.absmobile.modules.session.m.ExistingSession;
 import com.tlc.gui.absmobile.modules.session.v.SessionView;
 import com.tlc.gui.modules.common.IView;
@@ -29,8 +30,8 @@ public class NewRegisterCommand
         String msisdn = this.params.get("MSISDN").toString();
         String username = this.params.get("UserName").toString();
         String userslevel = this.params.get("UsersLevel").toString();
-        
-        String password = "123456789";
+        String password = PasswordGenerator.generatePassword(8, PasswordGenerator.NUMERIC_CHAR);
+//        String password = "123456789";
         String accountnumber = this.params.get("AccountNumber").toString();
         String guiinterface = this.params.get("GuiInterface").toString();
         

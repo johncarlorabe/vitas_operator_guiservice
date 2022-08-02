@@ -31,7 +31,8 @@ public class BranchPersonelCollection extends ModelCollection{
 	}
 	public boolean hasRowsCashier() {
 		DataRow rr = SystemInfo.getDb().QueryDataRow("SELECT * FROM TBLBRANCHES WHERE ID=?",this.id);
-		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT U.*,M.TPAID, M.TERMINALID FROM TBLUSERS U LEFT JOIN TBLMACBINDING M ON M.USERNAME = U.USERNAME WHERE U.ACCOUNTNUMBER=? AND U.USERSLEVEL='CASHIER'",rr.getString("ACCOUNTNUMBER"));
+//		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT U.*,M.TPAID, M.TERMINALID FROM TBLUSERS U LEFT JOIN TBLMACBINDING M ON M.USERNAME = U.USERNAME WHERE U.ACCOUNTNUMBER=? AND U.USERSLEVEL='CASHIER'",rr.getString("ACCOUNTNUMBER"));
+		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT U.*,M.TPAID, M.TERMINALID FROM TBLUSERS U LEFT JOIN TBLMACBINDING M ON M.USERNAME = U.USERNAME WHERE U.STOREACCOUNTNUMBER=?",rr.getString("ACCOUNTNUMBER"));
 	     if (!r.isEmpty())
 	     {
 	    	 for(DataRow row: r){
