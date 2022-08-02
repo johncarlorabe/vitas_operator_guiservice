@@ -5,6 +5,7 @@ import com.psi.branch.utils.AuditTrail;
 import com.psi.branch.utils.EmailUtils;
 import com.psi.branch.v.JsonView;
 import com.tlc.common.Logger;
+import com.tlc.encryption.PasswordGenerator;
 import com.tlc.gui.absmobile.modules.session.m.ExistingSession;
 import com.tlc.gui.absmobile.modules.session.v.SessionView;
 import com.tlc.gui.modules.common.IView;
@@ -29,8 +30,8 @@ public class NewManagerCommand extends UICommand{
 				String msisdn = this.params.get("MSISDN").toString();
 				String username = this.params.get("UserName").toString();
 				String accountnumber = this.params.get("AccountNumber");
-				//String password = PasswordGenerator.generatePassword(5, PasswordGenerator.NUMERIC_CHAR);
-				String password = "123456789";
+				String password = PasswordGenerator.generatePassword(8, PasswordGenerator.NUMERIC_CHAR);
+//				String password = "123456789";
 					 	
 				NewManager reg = new NewManager();
 						
