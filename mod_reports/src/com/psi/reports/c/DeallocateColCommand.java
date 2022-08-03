@@ -30,6 +30,7 @@ public class DeallocateColCommand extends UICommand{
 		String dateto = this.params.get("DateTo").toString();
 		String accounttype = this.params.get("AccountType").toString();
 		String cashier = this.params.get("Cashier").toString();
+		String company = this.params.get("Company").toString();
 		
 		DeallocateCollection model = new DeallocateCollection();
 						model.setBranch(code);
@@ -38,6 +39,7 @@ public class DeallocateColCommand extends UICommand{
 						model.setAuthorizedSession(sess);
 						model.setCashier(cashier);
 						model.setAccounttype(accounttype);
+						model.setCompany(company);
 				if((code.equals("ALL"))){
 					if(accounttype.equals("DEALER")){
 						if(model.hasRows()){

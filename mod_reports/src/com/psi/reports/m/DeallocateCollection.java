@@ -20,7 +20,7 @@ public class DeallocateCollection extends ModelCollection{
 	
 	@Override
 	public boolean hasRows() {
-		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLDEALLOCTRANSACTIONS WHERE FRACCOUNT IN (SELECT ACCOUNTNUMBER FROM TBLBRANCHES) AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.datefrom,this.dateto);
+		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLDEALLOCTRANSACTIONS WHERE FRACCOUNT IN (SELECT ACCOUNTNUMBER FROM TBLBRANCHES WHERE KEYACCOUNT=?) AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.company,this.datefrom,this.dateto);
 	     
 	     if (!r.isEmpty())
 	     {
