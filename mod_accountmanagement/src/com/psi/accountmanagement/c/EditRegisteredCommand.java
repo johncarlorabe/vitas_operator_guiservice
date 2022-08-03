@@ -27,9 +27,9 @@ public class EditRegisteredCommand extends UICommand{
 				String msisdn = this.params.get("MSISDN").toString();
 				String userid = this.params.get("UserId").toString();
 				String midname = this.params.get("MiddleName").toString();
-				String country = this.params.get("Country").toString();
-				String province = this.params.get("Province").toString();
-				String city = this.params.get("City").toString();
+//				String country = this.params.get("Country").toString();
+//				String province = this.params.get("Province").toString();
+//				String city = this.params.get("City").toString();
 				if(userslevel.equals("CUSTOMER")){
 					
 					String id = this.params.get("Id").toString();
@@ -47,9 +47,9 @@ public class EditRegisteredCommand extends UICommand{
 					reg.setUserid(userid);
 					reg.setUserslevel(userslevel);
 					reg.setMidname(midname);
-					reg.setCountry(country);
-					reg.setProvince(province);
-					reg.setCity(city);
+//					reg.setCountry(country);
+//					reg.setProvince(province);
+//					reg.setCity(city);
 					//reg.setAuthorizedSession(sess);
 				
 //				if(!reg.exist()){

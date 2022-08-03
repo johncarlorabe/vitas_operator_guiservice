@@ -15,12 +15,12 @@ public class ManageRegisteredUser extends Users{
 			}
 		StringBuilder query = new StringBuilder("BEGIN\n");
 		//query.append("UPDATE TBLACCOUNTINFO SET FIRSTNAME=?,LASTNAME=?,MIDDLENAME=?,MSISDN=?,COUNTRY=?,PROVINCE=?,CITY=? WHERE ID=?; \n");
-		query.append("UPDATE TBLUSERS SET FIRSTNAME=?,LASTNAME=?,MSISDN=?,DATEMODIFIED=SYSDATE,CITY=?,PROVINCE=?,COUNTRY=?,MIDDLENAME=? WHERE USERID = ?; \n");
+		query.append("UPDATE TBLUSERS SET FIRSTNAME=?,LASTNAME=?,MSISDN=?,DATEMODIFIED=SYSDATE,MIDDLENAME=? WHERE USERID = ?; \n");
 		query.append("UPDATE TBLCUSTOMEREXTENDEDDETAILS SET NATUREOFWORK = ?, SOURCEOFFUND = ? WHERE ACCOUNTNUMBER = ?;\n");
 		query.append("COMMIT;\nEXCEPTION WHEN OTHERS THEN\n	ROLLBACK;\n RAISE;\nEND;");
 		 
 		return SystemInfo.getDb().QueryUpdate(query.toString(), 
-											this.firstname,this.lastname,this.msisdn,this.city,this.province,this.country,this.midname,this.userid,
+											this.firstname,this.lastname,this.msisdn,this.midname,this.userid,
 											this.natureofwork,this.sourceoffund,row.getString("ACCOUNTNUMBER"))>0;
 	
 		}else{
