@@ -19,7 +19,7 @@ public class AdminAllocationHistoryCollection extends ModelCollection{
 	
 	@Override
 	public boolean hasRows() {
-		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLOCTRANSACTIONS WHERE (FRALIAS IN (SELECT BUSINESS FROM TBLBUSINESS) OR FRALIAS='SOLBPH') AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.datefrom,this.dateto);
+		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLOCTRANSACTIONS WHERE (FRALIAS IN (SELECT BUSINESS FROM TBLBUSINESS) OR FRALIAS='VITASPH') AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.datefrom,this.dateto);
 	     
 	     if (!r.isEmpty())
 	     {
@@ -91,7 +91,7 @@ public class AdminAllocationHistoryCollection extends ModelCollection{
 	public boolean getPrepaidColDealer() {
 		Logger.LogServer("ALLOCATION REPORT FOR ~" +this.accounttype);
 		
-		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLOCTRANSACTIONS WHERE (FRALIAS IN (SELECT BUSINESS FROM TBLBUSINESS) OR FRALIAS='SOLBPH') AND TOACCOUNT = ? AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.branch,this.datefrom,this.dateto);
+		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLOCTRANSACTIONS WHERE (FRALIAS IN (SELECT BUSINESS FROM TBLBUSINESS) OR FRALIAS='VITASPH') AND TOACCOUNT = ? AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.branch,this.datefrom,this.dateto);
 	     
 	     if (!r.isEmpty())
 	     {
