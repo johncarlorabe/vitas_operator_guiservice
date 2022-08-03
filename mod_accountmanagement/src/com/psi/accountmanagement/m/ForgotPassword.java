@@ -14,7 +14,7 @@ public class ForgotPassword extends Users{
 	private static final String REGEX_CUSTOMER = "customer";
 	
 	public boolean reset(){	
-		return SystemInfo.getDb().QueryUpdate("UPDATE TBLUSERS SET PASSWORD=ENCRYPT(?,?,USERNAME) WHERE EMAIL = ?",this.password,SystemInfo.getDb().getCrypt(), this.email)>0;
+		return SystemInfo.getDb().QueryUpdate("UPDATE TBLUSERS SET ISFIRSTLOGON=1, PASSWORD=ENCRYPT(?,?,USERNAME) WHERE EMAIL = ?",this.password,SystemInfo.getDb().getCrypt(), this.email)>0;
 		
 	}
 	
