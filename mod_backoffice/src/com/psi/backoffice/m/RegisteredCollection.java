@@ -13,7 +13,7 @@ public class RegisteredCollection
   protected String id;
   
   public boolean hasRows() {
-    DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLUSERS WHERE ACCOUNTNUMBER =? AND USERSLEVEL NOT IN ( 'ADMIN OPERATOR','CASHIER','MANAGER','KEYACCOUNT','CUSTOMER')", new Object[] { this.id });
+    DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLUSERS WHERE ACCOUNTNUMBER =? AND USERSLEVEL NOT IN ( 'ADMIN OPERATOR','CASHIER','MANAGER','KEYACCOUNT','CUSTOMER') AND STATUS='ACTIVE'", new Object[] { this.id });
     
     if (!r.isEmpty())
     {
@@ -26,6 +26,7 @@ public class RegisteredCollection
         m.setProperty("Lastname", (row.getString("LASTNAME") == null) ? "" : row.getString("LASTNAME").toString());
         m.setProperty("Username", (row.getString("USERNAME") == null) ? "" : row.getString("USERNAME").toString());
         m.setProperty("UsersLevel", (row.getString("USERSLEVEL") == null) ? "" : row.getString("USERSLEVEL").toString());
+        m.setProperty("GuiInterface", (row.getString("GUIINTERFACE") == null) ? "" : row.getString("GUIINTERFACE").toString());
         add(m);
       } 
     }
