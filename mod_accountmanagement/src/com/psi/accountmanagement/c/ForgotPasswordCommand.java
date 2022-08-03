@@ -26,7 +26,7 @@ public class ForgotPasswordCommand extends UICommand{
 			if(sess.exists()) {*/
 				String email = this.params.get("Email").toString();
 				String url = this.params.get("Url").toString();
-				String password = PasswordGenerator.generatePassword(4, PasswordGenerator.UPPER_ALPHA);
+				String password = PasswordGenerator.generatePassword(8, PasswordGenerator.NUMERIC_CHAR);
 	 	
 				ForgotPassword reg = new ForgotPassword();
 						
