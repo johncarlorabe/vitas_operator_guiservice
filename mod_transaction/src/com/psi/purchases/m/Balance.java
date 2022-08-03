@@ -121,6 +121,60 @@ public class Balance extends Model {
 				    }
 		}
 	
+	
+	public boolean balanceCardNumber(String cardnumber) throws ParseException, Exception {
+		OtherProperties prop = new OtherProperties();
+		
+
+		DataRow res = SystemInfo.getDb().QueryDataRow("SELECT * FROM ADMDBMC.TBLACCOUNTINFO WHERE MSISDN=?", cardnumber);
+		
+		if(res.isEmpty()) {
+			return false;
+		}
+				HttpClientHelper client = new HttpClientHelper();
+			    HashMap<String, String> headers = new HashMap<String, String>();
+			    headers.put("Content-Type", prop.getType());
+			    headers.put("token",prop.getToken());
+			    headers.put("X-Forwarded-For","127.0.0.1");
+			    byte[] apiResponse = client.httpGet(prop.getUrl()+res.getString("ACCOUNTNUMBER")+"/wallet", null, headers, null);
+			    Logger.LogServer(" response : " + new String(apiResponse));
+				    if(apiResponse.length>0){
+				    JSONObject object = (JSONObject)new JSONParser().parse(new String(apiResponse, "UTF-8"));
+				
+					    JSONParser p = new JSONParser();
+					    JSONObject bal = (JSONObject) p.parse(object.toJSONString());
+					    
+					    if(bal.get("code").toString().equals("0") || bal.get("code").toString().equals(0)){
+					    ArrayList<Object> pockets = (ArrayList)bal.get("pockets");
+					    HashMap<String,Object> pocket = (HashMap<String, Object>) pockets.get(0);
+					   
+					    
+					    if(pocket.get("pocket-id").toString().equals("0") || pocket.get("pocket-id").toString().equals(0)  ){
+					    	HashMap<String,Object> pocket1 = (HashMap<String, Object>) pockets.get(1);
+					    	this.setCurrentbal(pocket1.get("current-balance").toString());
+					    	this.setAvailablebal( pocket1.get("available-balance").toString());
+					    	this.setState(new ObjectState("00",bal.get("message").toString()));  
+					    	 return true;
+
+					    }else{
+					    	this.setCurrentbal(pocket.get("current-balance").toString());
+					    	this.setAvailablebal( pocket.get("available-balance").toString());
+					    	this.setState(new ObjectState("00",bal.get("message").toString()));  
+					    	 return true;
+
+					    }	    
+					    						    
+					   
+					    }else{
+					    	this.setState(new ObjectState(bal.get("code").toString(),bal.get("message").toString()));
+					    	return false;
+					    }
+
+				    }else{
+				    this.setState(new ObjectState("99","System is busy"));
+				    return false;
+				    }
+		}
 	public String getCurrentbal() {
 		return currentbal;
 	}
