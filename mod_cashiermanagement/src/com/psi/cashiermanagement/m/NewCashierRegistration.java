@@ -34,7 +34,6 @@ public class NewCashierRegistration extends Cashier{
 		JSONObject request4 = new JSONObject();
 		JSONObject request5 = new JSONObject();
 		
-		
 		String reqid = "PORTAL"+SystemInfo.getDb().QueryScalar("SELECT ADMDBMC.GETREFERENCEID(7500) FROM DUAL", "0");	    
 	    String date = SystemInfo.getDb().QueryScalar("SELECT SYSDATE FROM DUAL", "0");
 	    
