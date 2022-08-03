@@ -34,10 +34,11 @@ public class ManageRegisteredUser
   public boolean delete() {
     DataRow row = SystemInfo.getDb().QueryDataRow("SELECT * FROM TBLUSERS WHERE USERID = ?", new Object[] { this.id });
     StringBuilder query = new StringBuilder("BEGIN\n");
-    query.append("DELETE FROM TBLUSERS WHERE USERID = ?; \n");
-    query.append("DELETE FROM TBLPOSUSERS WHERE USERID = ?; \n");
+    query.append("UPDATE TBLUSERS SET STATUS='INACTIVE' WHERE USERID = ?; \n");
+//    query.append("DELETE FROM TBLUSERS WHERE USERID = ?; \n");
+//    query.append("DELETE FROM TBLPOSUSERS WHERE USERID = ?; \n");
     query.append("COMMIT;\nEXCEPTION WHEN OTHERS THEN\n\tROLLBACK;\n RAISE;\nEND;");
     
-    return (SystemInfo.getDb().QueryUpdate(query.toString(), new Object[] { this.id, row.getString("USERNAME") }) > 0);
+    return (SystemInfo.getDb().QueryUpdate(query.toString(), new Object[] { this.id }) > 0);
   }
 }
