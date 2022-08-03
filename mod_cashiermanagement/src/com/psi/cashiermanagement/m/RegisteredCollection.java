@@ -23,7 +23,7 @@ public class RegisteredCollection extends ModelCollection{
 	@Override
 	public boolean hasRows() {
 		
-	     DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT U.*,DECRYPT(CS.AMOUNT, ? , CS.ACCOUNTNUMBER) CURRENTBAL FROM TBLUSERS U INNER JOIN ADMDBMC.TBLCURRENTSTOCK CS ON U.ACCOUNTNUMBER=CS.ACCOUNTNUMBER  WHERE GUIINTERFACE='vitascashier'",SystemInfo.getDb().getCrypt());
+	     DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT U.*,DECRYPT(CS.AMOUNT, ? , CS.ACCOUNTNUMBER) CURRENTBAL FROM TBLUSERS U INNER JOIN ADMDBMC.TBLCURRENTSTOCK CS ON U.ACCOUNTNUMBER=CS.ACCOUNTNUMBER  WHERE CS.WALLETID=1 AND GUIINTERFACE='vitascashier' AND U.STOREACCOUNTNUMBER=?",SystemInfo.getDb().getCrypt(),this.accountnumber);
 	    	
 	     if (!r.isEmpty())
 	     {

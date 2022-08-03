@@ -26,8 +26,9 @@ public class RegisteredCollectionCommand extends UICommand{
 				String accountnumber = this.params.get("AccountNumber").toString();
 				
 				RegisteredCollection col = new RegisteredCollection();
-						
+
 				col.setId(accountnumber);	
+				col.setAccountnumber(accountnumber);	
 			    col.setAuthorizedSession(sess);
 				
 				if(col.hasRows()){
