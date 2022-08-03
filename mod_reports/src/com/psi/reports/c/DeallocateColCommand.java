@@ -39,7 +39,7 @@ public class DeallocateColCommand extends UICommand{
 						model.setCashier(cashier);
 						model.setAccounttype(accounttype);
 				if((code.equals("ALL"))){
-					if(accounttype.equals("BRANCH")){
+					if(accounttype.equals("DEALER")){
 						if(model.hasRows()){
 							AuditTrail audit  = new AuditTrail();
 				    		audit.setIp(model.getAuthorizedSession().getIpAddress());
