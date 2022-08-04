@@ -31,6 +31,7 @@ public class AllocHistoryAdminColCommand extends UICommand{
 		String dateto = this.params.get("DateTo").toString();
 		String accounttype = this.params.get("AccountType").toString();
 		String cashier = this.params.get("Cashier").toString();
+		String accountnumber = this.params.get("AccountNumber").toString();
 		
 		AdminAllocationHistoryCollection model = new AdminAllocationHistoryCollection();
 						model.setBranch(code);
@@ -39,6 +40,7 @@ public class AllocHistoryAdminColCommand extends UICommand{
 						model.setAuthorizedSession(sess);
 						model.setAccounttype(accounttype);
 						model.setCashier(cashier);
+						model.setAccountnumber(accountnumber);
 				if(code.equals("ALL")){
 					if(model.hasRows()){
 						AuditTrail audit  = new AuditTrail();

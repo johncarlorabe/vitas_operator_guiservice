@@ -16,10 +16,15 @@ public class AdminAllocationHistoryCollection extends ModelCollection{
 	protected String dateto;
 	protected String accounttype;
 	protected String cashier;
+	protected String accountnumber;
 	
+
+
 	@Override
 	public boolean hasRows() {
-		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLOCTRANSACTIONS WHERE (FRALIAS IN (SELECT BUSINESS FROM TBLBUSINESS) OR FRALIAS='VITASPH') AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.datefrom,this.dateto);
+//		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLOCTRANSACTIONS WHERE  (FRALIAS IN (SELECT BUSINESS FROM TBLBUSINESS) OR FRALIAS='VITASPH') AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.datefrom,this.dateto);
+		DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLALLOCTRANSACTIONS WHERE (FRALIAS IN (SELECT BUSINESS FROM TBLBUSINESS) OR FRALIAS='VITASPH') AND TOACCOUNT IN (SELECT ACCOUNTNUMBER FROM TBLBRANCHES WHERE KEYACCOUNT=?) AND TO_CHAR(TIMESTAMP,'YYYY-MM-DD') BETWEEN ? AND ?",this.accountnumber,this.datefrom,this.dateto);
+	     
 	     
 	     if (!r.isEmpty())
 	     {
@@ -148,5 +153,11 @@ public class AdminAllocationHistoryCollection extends ModelCollection{
 		this.cashier = cashier;
 	}
 	
-	
+	public String getAccountnumber() {
+		return accountnumber;
+	}
+
+	public void setAccountnumber(String accountnumber) {
+		this.accountnumber = accountnumber;
+	}
 }
