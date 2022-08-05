@@ -2,6 +2,7 @@ package com.psi.branch.m;
 
 import com.tlc.common.DataRow;
 import com.tlc.common.DataRowCollection;
+import com.tlc.common.LongUtil;
 import com.tlc.common.SystemInfo;
 import com.tlc.gui.modules.common.ModelCollection;
 import com.tlc.gui.modules.common.ReportItem;
@@ -11,7 +12,7 @@ public class BranchCollection extends ModelCollection{
 protected String accountnumber;
 	@Override
 	public boolean hasRows() {
-			DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT * FROM TBLBRANCHES WHERE STATUS NOT IN(3,4) AND KEYACCOUNT=?",this.accountnumber);
+			DataRowCollection r = SystemInfo.getDb().QueryDataRows("SELECT B.*,DECRYPT(CS.AMOUNT, ? , CS.ACCOUNTNUMBER) CURRENTBAL FROM TBLBRANCHES B INNER JOIN ADMDBMC.TBLCURRENTSTOCK CS ON B.ACCOUNTNUMBER=CS.ACCOUNTNUMBER WHERE CS.WALLETID=1 AND B.STATUS NOT IN(3,4) AND B.KEYACCOUNT=?",SystemInfo.getDb().getCrypt(),this.accountnumber);
 	     
 	     if (!r.isEmpty())
 	     {
@@ -51,6 +52,8 @@ protected String accountnumber;
 		        	 m.setProperty("NatureOfBusiness", row.getString("NATUREOFBUSINESS") == null ? "" : row.getString("NATUREOFBUSINESS").toString());
 		        	 m.setProperty("GrossSales", row.getString("GROSSSALES") == null ? "" : row.getString("GROSSSALES").toString());
 		        	 m.setProperty("RegisteredBy", row.getString("REGISTEREDBY") == null ? "" : row.getString("REGISTEREDBY").toString());
+		        	 m.setProperty("CurrentBalance", row.getString("CURRENTBAL") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("CURRENTBAL").toString())));
+						
 		        	 
 		         }else{
 		        	 m.setProperty("Id", row.getString("ID") == null ? "" : row.getString("ID").toString());
@@ -83,6 +86,8 @@ protected String accountnumber;
 		        	 m.setProperty("NatureOfBusiness", row.getString("NATUREOFBUSINESS") == null ? "" : row.getString("NATUREOFBUSINESS").toString());
 		        	 m.setProperty("GrossSales", row.getString("GROSSSALES") == null ? "" : row.getString("GROSSSALES").toString());
 		        	 m.setProperty("RegisteredBy", row.getString("REGISTEREDBY") == null ? "" : row.getString("REGISTEREDBY").toString());
+		        	 m.setProperty("CurrentBalance", row.getString("CURRENTBAL") == null ? "" :LongUtil.toString(Long.parseLong(row.getString("CURRENTBAL").toString())));
+						
 		        	 
 		         }
 
